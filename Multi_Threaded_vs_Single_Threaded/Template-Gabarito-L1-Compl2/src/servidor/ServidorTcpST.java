@@ -22,7 +22,7 @@ public class ServidorTcpST {
 			s = welcomeSocket.accept();
 			out = new DataOutputStream(s.getOutputStream());
 			in = new DataInputStream(s.getInputStream());
-			getRequest();
+			String operations = getRequest();
 			int value1 = Integer.parseInt(operations.split(" ")[0]);
 			int value2 = Integer.parseInt(operations.split(" ")[2]);
 			String value = String.valueOf(calculadora.add(value1, value2));

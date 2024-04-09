@@ -48,12 +48,19 @@ class Connection extends Thread {
 	}
 	
 	public void run() {
-		String operations = getRequest();
-		int value1 = Integer.parseInt(operations.split(" ")[0]);
-		int value2 = Integer.parseInt(operations.split(" ")[2]);
-		
-		String value = String.valueOf(calculadora.add(value1, value2));
-		Thread.sleep(100);
-		sendResponse(value);	
+		String operations;
+		try {
+			operations = getRequest();
+			int value1 = Integer.parseInt(operations.split(" ")[0]);
+			int value2 = Integer.parseInt(operations.split(" ")[2]);
+			
+			String value = String.valueOf(calculadora.add(value1, value2));
+			Thread.sleep(100);
+			sendResponse(value);	
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e){
+			e.printStackTrace();
+		}
 	}
 }

@@ -43,7 +43,11 @@ public class TesteDeCarga {
 						erroRecev++;
 					} 
 					if (clientTest != null) {
-						clientTest.close();
+						try {
+							clientTest.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			});
@@ -70,7 +74,7 @@ public class TesteDeCarga {
 		
 	}
 
-	public static void main(String args[])  {
+	public static void main(String args[]) throws IOException  {
 		
 		int rodadas = 100;
 		
