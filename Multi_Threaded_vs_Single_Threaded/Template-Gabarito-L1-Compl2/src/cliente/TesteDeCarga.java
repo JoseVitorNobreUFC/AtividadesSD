@@ -9,7 +9,7 @@ public class TesteDeCarga {
 	static int erroConnect = 0;
 	static double sucesso = 0; 
 	
-	public long executar(String ipServer, int portServer, int rodadas) {
+	public long executar(String ipServer, int portServer, int rodadas) throws IOException {
 		
 		erroSend = erroRecev = erroConnect = 0;
 		sucesso = 0; 
@@ -41,7 +41,7 @@ public class TesteDeCarga {
 						}
 					} catch (IOException e) {
 						erroRecev++;
-					}
+					} 
 					if (clientTest != null) {
 						clientTest.close();
 					}

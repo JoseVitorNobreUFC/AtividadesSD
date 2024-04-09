@@ -19,14 +19,14 @@ public class ClienteTcp {
 	}
 
 	public void sendRequest(String request) throws IOException {
+		out.writeUTF(request);
 	}
 
 	public String getResponse() throws IOException {
-
-
+		return in.readUTF();
 	}
 
-	public void close() {
-		
+	public void close() throws IOException{
+		this.s.close();
 	}
 }
