@@ -18,15 +18,19 @@ public class ServidorTcpST {
 
 		while (true) {
 			s = welcomeSocket.accept();
-			//getRequest()
-			//tratamento da requisicao
-			//Thread.sleep(100);
-			//sendResponse()
+			getRequest();
+			
+			Thread.sleep(100);
+			sendResponse();
 		}
 	}
 	
-	public static String getRequest() throws IOException {
-
+	public static String getRequest(String calcOperation) throws IOException {
+		Double value = calculadora.add(
+				Double.parseDouble(calcOperation.split(calcOperation)[0]),
+				Double.parseDouble(calcOperation.split(calcOperation)[2])
+			);
+		return value.toString();
 	}
 	
 	public static void sendResponse(String response) throws IOException {

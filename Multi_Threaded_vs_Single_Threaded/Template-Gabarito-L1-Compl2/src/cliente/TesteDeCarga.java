@@ -29,7 +29,7 @@ public class TesteDeCarga {
 					}
 					try {
 						if (clientTest != null) {
-							clientTest.sendRequest("1 + 1");
+							clientTest.sendRequest("5 + 5");
 						}
 					} catch (IOException e) {
 						erroSend++;
@@ -72,7 +72,7 @@ public class TesteDeCarga {
 
 	public static void main(String args[])  {
 		
-		int rodadas = Integer.parseInt(args[0]);
+		int rodadas = 100;
 		
 		TesteDeCarga testeDeCarga = new TesteDeCarga();
 		

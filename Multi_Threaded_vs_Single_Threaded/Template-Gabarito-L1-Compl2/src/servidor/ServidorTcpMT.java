@@ -29,25 +29,27 @@ public class ServidorTcpMT {
 
 class Connection extends Thread {
 	Socket clientSocket;
-	Calculadora calculadora = null;
+	static Calculadora calculadora = Calculadora.getInstance();
 	DataInputStream in = null;
 	DataOutputStream out = null;
 
 	public Connection(Socket aClientSocket) throws IOException {
-
+		clientSocket = aClientSocket;
+		in = new DataInputStream(clientSocket.getInputStream());
+		out = new DataOutputStream(clientSocket.getOutputStream());
 	}
 
 	public String getRequest( ) throws IOException {
-
+		// calculadora.getInstance();
 	}
 
 	public void sendResponse(String response) throws IOException {
 	}
 	
 	public void run() {
-		//getRequest()
-		//tratamento da requisicao
-		//Thread.sleep(100);
-		//sendResponse()	
+		getRequest();
+
+		Thread.sleep(100);
+		sendResponse()	;
 	}
 }
