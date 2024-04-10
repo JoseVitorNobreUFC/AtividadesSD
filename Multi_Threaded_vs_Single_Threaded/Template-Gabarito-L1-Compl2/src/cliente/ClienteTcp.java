@@ -23,10 +23,17 @@ public class ClienteTcp {
 	}
 
 	public String getResponse() throws IOException {
-		return in.readUTF();
+		String response = in.readUTF();
+		return response;
 	}
 
 	public void close() throws IOException{
-		this.s.close();
+		try {
+            if (s != null){
+                s.close();
+			}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 }

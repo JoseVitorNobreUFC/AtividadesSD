@@ -29,7 +29,7 @@ public class ServidorTcpMT {
 
 class Connection extends Thread {
 	Socket clientSocket;
-	static Calculadora calculadora = Calculadora.getInstance();
+	Calculadora calculadora = Calculadora.getInstance();
 	DataInputStream in = null;
 	DataOutputStream out = null;
 
@@ -46,21 +46,26 @@ class Connection extends Thread {
 	public void sendResponse(String response) throws IOException {
 		out.writeUTF(response);
 	}
-	
+
 	public void run() {
-		String operations;
 		try {
-			operations = getRequest();
+			String operations = getRequest();
 			int value1 = Integer.parseInt(operations.split(" ")[0]);
 			int value2 = Integer.parseInt(operations.split(" ")[2]);
-			
+
 			String value = String.valueOf(calculadora.add(value1, value2));
 			Thread.sleep(100);
-			sendResponse(value);	
+			sendResponse(value);
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (InterruptedException e){
+		} catch (InterruptedException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				clientSocket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
